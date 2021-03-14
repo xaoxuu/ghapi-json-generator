@@ -1,0 +1,10 @@
+# 要保存 contributors 数据的仓库
+contributors:
+  - xaoxuu/github-api
+  - xaoxuu/hexo-theme-stellar
+  - volantis-x/hexo-theme-volantis
+
+# 要保存 releases 数据的仓库
+releases:
+  - xaoxuu/hexo-theme-stellar
+  - volantis-x/hexo-theme-volantis
