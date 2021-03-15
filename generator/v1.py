@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
+import config
 import requests
 import yaml
 import json
 import os
 
-def load_config():
-    f = open('config.yml', 'r', encoding = 'utf-8')
-    ystr = f.read()
-    ymllist = yaml.load(ystr, Loader = yaml.FullLoader)
-    return ymllist
+baselink = {
+    "users": "https://api.github.com/users/",
+    "repos": "https://api.github.com/repos/"
+}
 
 def save_json(repo, type, content):
-    root = 'output/v1/'
+    root = 'v1/'
     dir = root + repo + '/'
     file = dir + type + '.json'
     # 创建路径
@@ -23,24 +23,28 @@ def save_json(repo, type, content):
         json.dump(content, file_obj, ensure_ascii = False)
 
 
-print('> rate_limit: \n', requests.get('https://api.github.com/rate_limit').content)
+print('> rate_limit: \n', requests.get('https://api.github.com/rate_limit').content.decode())
 print('> start')
 
-baselink = 'https://api.github.com/repos/'
-config = load_config()
 try:
-    print('> contributors:', config['contributors'])
-    for repo in config['contributors']:
-        api = baselink + repo + '/contributors'
-        print('> get: ', api)
-        req = requests.get(api)
-        save_json(repo, 'contributors', json.loads(req.content.decode()))
-    print('> releases:', config['releases'])
-    for repo in config['releases']:
-        api = baselink + repo + '/releases'
-        print('> get: ', api)
-        req = requests.get(api)
-        save_json(repo, 'releases', json.loads(req.content.decode()))
+    # users
+    print('> users: ', config.read('users'))
+    for item in config.read('users'):
+        api_url = baselink['users'] + item
+        print('> get: ', api_url)
+        req = requests.get(api_url)
+        save_json(item, 'users', json.loads(req.content.decode()))
+    # repos
+    type_list = ['contributors', 'releases', 'issues']
+    for type in type_list:
+        print('> ' + type + ': ', config.read(type))
+        for item in config.read(type):
+            api_url = baselink['repos'] + item + '/' + type
+            print('> get: ', api_url)
+            req = requests.get(api_url)
+            save_json(item, type, json.loads(req.content.decode()))
 except Exception as e:
-    print('> end: ', e)
+    print('> exception: ', e)
+
+print('> rate_limit: \n', requests.get('https://api.github.com/rate_limit').content.decode())
 print('> end')

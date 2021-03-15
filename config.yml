@@ -1,10 +1,29 @@
+# 设置
+settings:
+  # 默认源，请求时不传 source 则使用这里的值作为 source ，如果需要部署API，则需要设置为「用户名/本仓库」
+  source_repo: xaoxuu/github-api
+  # 数据源输出分支（存放自动生成的文件）
+  output_branch: output
+
+########################################
+# 由于 GitHub API 限制，最多可以设置 60 个
+########################################
+
+# 要保存的 users 数据
+users:
+  - xaoxuu
+
 # 要保存 contributors 数据的仓库
 contributors:
   - xaoxuu/github-api
   - xaoxuu/hexo-theme-stellar
-  - volantis-x/hexo-theme-volantis
 
 # 要保存 releases 数据的仓库
 releases:
+  - xaoxuu/github-api
   - xaoxuu/hexo-theme-stellar
-  - volantis-x/hexo-theme-volantis
+
+# 要保存 releases 数据的仓库
+issues:
+  - xaoxuu/github-api
+  - xaoxuu/hexo-theme-stellar

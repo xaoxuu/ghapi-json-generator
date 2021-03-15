@@ -1,10 +1,13 @@
 name: Generator
 
 on:
+  push:
+    branches:
+      - main
   watch:
     types: [started]
   schedule:
-    - cron: '0/10 * * * *'
+    - cron: '0 0/1 * * *'
 
 jobs:
   build:
@@ -22,14 +25,12 @@ jobs:
     - name: Run Generator
       run: |
         python generator/v1.py
-        echo `date +"%Y-%m-%d %H:%M:%S"` begin > generator/time.log
-    - name: Commit
-      run: |
-        git config --global user.email github-actions@noreply.github.com
-        git config --global user.name github-actions
-        git add .
-        git commit -m "Generate Json" -a
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+    - name: Commit & Push
+      uses: action-x/commit@v2.8
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        push-branch: 'output'
+        commit-message: 'Generate Json'
+        force-push: 'true'
+        name: github-actions[bot]
+        email: github-actions[bot]@noreply.github.com

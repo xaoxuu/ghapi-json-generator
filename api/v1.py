@@ -2,39 +2,63 @@
 from flask import Flask, request, jsonify, redirect, make_response
 import requests
 import json
-from bs4 import BeautifulSoup
+import yaml
 
 app = Flask(__name__)
 
+# read config
+def load_settings(key):
+    f = open('config.yml', 'r', encoding = 'utf-8')
+    ystr = f.read()
+    f.close()
+    data = yaml.load(ystr, Loader = yaml.SafeLoader)
+    return data['settings'][key]
+
+
 def github_json(api_repo, target):
-    source_url = 'https://raw.githubusercontent.com/' + api_repo + '/output/v1/' + target
+    source_url = 'https://raw.githubusercontent.com/' + api_repo + '/v1/' + target
     print('> get: ', source_url)
     req = requests.get(source_url)
-    content = []
-    if req.content:
+    if req.status_code == 200:
+        print('> req.content: ', req.content)
         content = json.loads(req.content.decode())
-    resp = make_response(jsonify(
-        code = 0,
-        source_url = source_url,
-        content = content
-    ))
-    resp.status = '200'
-    resp.headers['Access-Control-Allow-Origin'] = '*'
-    resp.headers['Access-Control-Allow-Methods'] = 'GET'
-    resp.headers['Content-Type'] = 'application/json; charset=utf-8'
-    return resp
+        resp = make_response(jsonify(content))
+        resp.status = '200'
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.headers['Access-Control-Allow-Methods'] = 'GET'
+        resp.headers['Content-Type'] = 'application/json; charset=utf-8'
+        return resp
+    else:
+        resp = make_response(req.content)
+        resp.status = '404'
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.headers['Access-Control-Allow-Methods'] = 'GET'
+        return resp
 
 
 @app.route('/v1', methods=['GET'])
 def start_list():
     return jsonify(
-        contributors = "https://github-api-xaoxuu.vercel.app/v1/contributors?api={owner/repo}&repo={owner/repo}",
-        releases = "https://github-api-xaoxuu.vercel.app/v1/releases?api={owner/repo}&repo={owner/repo}"
+        users = "https://gh-api.xaoxuu.com/v1/users?source={owner/repo}&target={owner}",
+        contributors = "https://gh-api.xaoxuu.com/v1/contributors?source={owner/repo}&target={owner/repo}",
+        releases = "https://gh-api.xaoxuu.com/v1/releases?source={owner/repo}&target={owner/repo}",
+        issues = "https://gh-api.xaoxuu.com/v1/issues?source={owner/repo}&target={owner/repo}"
     )
 
 @app.route('/v1/<type>', methods=['GET'])
 def start_main(type):
-    api_repo = request.args.get("api") or 'xaoxuu/github-api'
-    repo = request.args.get("repo") or 'xaoxuu/github-api'
-    target = repo + '/' + type + '.json'
-    return github_json(api_repo + '/main', target)
+    source = request.args.get("source") or load_settings('source_repo')
+    source += '/' + load_settings('output_branch')
+    target = request.args.get("target")
+    if target:
+        target += '/' + type + '.json'
+        return github_json(source, target)
+    else:
+        api_url = 'https://gh-api.xaoxuu.com/v1/'
+        api_url += type + '?' + 'source={owner/repo}'
+        api_url += '&target='
+        if type == 'users':
+            api_url += '{owner}'
+        else:
+            api_url += '{owner/repo}'
+        return {type: api_url}

@@ -1,5 +1,8 @@
 {
     "version": 2,
+    "github": {
+        "silent": true
+    },
     "builds": [
         { "src": "api/root.py", "use": "@vercel/python" },
         { "src": "api/v1.py", "use": "@vercel/python" }
