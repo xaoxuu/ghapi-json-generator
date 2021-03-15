@@ -21,7 +21,7 @@ releases:
   - xaoxuu/github-api
   - xaoxuu/hexo-theme-stellar
 
-# 要保存 releases 数据的仓库
+# 要保存 issues 数据的仓库
 issues:
   - xaoxuu/github-api
   - xaoxuu/hexo-theme-stellar
