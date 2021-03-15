@@ -48,7 +48,7 @@ def start_list():
 @app.route('/v1/<type>', methods=['GET'])
 def start_main(type):
     source = request.args.get("source") or load_settings('source_repo')
-    source += '/' + load_settings('output_branch')
+    source += '/output'
     target = request.args.get("target")
     if target:
         target += '/' + type + '.json'
