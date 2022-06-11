@@ -35,7 +35,7 @@ try:
         req = requests.get(api_url)
         save_json(item, 'users', json.loads(req.content.decode()))
     # repos
-    type_list = ['contributors', 'releases', 'issues']
+    type_list = ['contributors', 'releases', 'issues', 'stargazers']
     for type in type_list:
         print('> ' + type + ': ', config.read(type))
         for item in config.read(type):
