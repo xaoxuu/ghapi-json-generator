@@ -38,12 +38,18 @@ def github_json(api_repo, target):
 
 @app.route('/v1', methods=['GET'])
 def start_list():
-    return jsonify(
-        users = "https://gh-api.xaoxuu.com/v1/users?source={owner/repo}&target={owner}",
-        contributors = "https://gh-api.xaoxuu.com/v1/contributors?source={owner/repo}&target={owner/repo}",
-        releases = "https://gh-api.xaoxuu.com/v1/releases?source={owner/repo}&target={owner/repo}",
-        issues = "https://gh-api.xaoxuu.com/v1/issues?source={owner/repo}&target={owner/repo}"
-    )
+    data = {
+        "users": "https://gh-api.xaoxuu.com/v1/users?source={owner/repo}&target={owner}",
+        "contributors": "https://gh-api.xaoxuu.com/v1/contributors?source={owner/repo}&target={owner/repo}",
+        "releases": "https://gh-api.xaoxuu.com/v1/releases?source={owner/repo}&target={owner/repo}",
+        "issues": "https://gh-api.xaoxuu.com/v1/issues?source={owner/repo}&target={owner/repo}"
+    }
+    resp = make_response(json.dumps(data, indent=2))
+    resp.status = '200'
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'GET'
+    resp.headers['Content-Type'] = 'application/json; charset=utf-8'
+    return resp
 
 @app.route('/v1/<type>', methods=['GET'])
 def start_main(type):
