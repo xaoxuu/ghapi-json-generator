@@ -20,7 +20,7 @@ def save_json(repo, type, content):
         os.makedirs(dir)
     # 写入文件
     with open(file, 'w', encoding = 'utf-8') as file_obj:
-        json.dump(content, file_obj, ensure_ascii = False)
+        json.dump(content, file_obj, ensure_ascii = False, indent = 2)
 
 
 print('> rate_limit: \n', requests.get('https://api.github.com/rate_limit').content.decode())
