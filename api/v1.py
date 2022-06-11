@@ -21,8 +21,8 @@ def github_json(api_repo, target):
     req = requests.get(source_url)
     if req.status_code == 200:
         print('> req.content: ', req.content)
-        content = json.loads(req.content.decode())
-        resp = make_response(jsonify(content))
+        data = json.loads(req.content.decode())
+        resp = make_response(json.dumps(data, indent=2))
         resp.status = '200'
         resp.headers['Access-Control-Allow-Origin'] = '*'
         resp.headers['Access-Control-Allow-Methods'] = 'GET'
