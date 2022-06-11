@@ -13,15 +13,21 @@ users:
 
 # 要保存 contributors 数据的仓库
 contributors:
-  - xaoxuu/github-api
   - xaoxuu/hexo-theme-stellar
+  - volantis-x/hexo-theme-volantis
 
 # 要保存 releases 数据的仓库
 releases:
-  - xaoxuu/github-api
   - xaoxuu/hexo-theme-stellar
+  - volantis-x/hexo-theme-volantis
 
 # 要保存 issues 数据的仓库
 issues:
-  - xaoxuu/github-api
   - xaoxuu/hexo-theme-stellar
+  - volantis-x/hexo-theme-volantis
+
+# 要保存 stargazers 数据的仓库
+stargazers:
+  - xaoxuu/hexo-theme-stellar
+  - xaoxuu/ProHUD
+  - volantis-x/hexo-theme-volantis
