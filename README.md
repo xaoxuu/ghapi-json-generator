@@ -2,7 +2,7 @@
 
 一个通过定时缓存 GitHub API 数据并提供加速访问的工具，解决了直接调用 GitHub API 频率有限制以及速度过慢的问题。
 
-示例：https://gh-api.xaoxuu.com/v1/users?target=xaoxuu
+示例：https://github-api-bice.vercel.app/v1/users?target=xaoxuu
 
 ## 使用方法
 
@@ -21,7 +21,7 @@
 ### users
 
 ```
-https://gh-api.xaoxuu.com/v1/users?source={owner/repo}&target={owner}
+https://github-api-bice.vercel.app/v1/users?source={owner/repo}&target={owner}
 ```
 
 > 自己部署 API 可以省略 `source` 参数
@@ -29,26 +29,26 @@ https://gh-api.xaoxuu.com/v1/users?source={owner/repo}&target={owner}
 ### contributors
 
 ```
-https://gh-api.xaoxuu.com/v1/contributors?source={owner/repo}&target={owner/repo}
+https://github-api-bice.vercel.app/v1/contributors?source={owner/repo}&target={owner/repo}
 ```
 
-示例：https://gh-api.xaoxuu.com/v1/contributors?source=xaoxuu/github-api&target=xaoxuu/hexo-theme-stellar
+示例：https://github-api-bice.vercel.app/v1/contributors?source=xaoxuu/github-api&target=xaoxuu/hexo-theme-stellar
 
 ### releases
 
 ```
-https://gh-api.xaoxuu.com/v1/releases?source={owner/repo}&target={owner/repo}
+https://github-api-bice.vercel.app/v1/releases?source={owner/repo}&target={owner/repo}
 ```
 
-示例：https://gh-api.xaoxuu.com/v1/releases?source=xaoxuu/github-api&target=xaoxuu/hexo-theme-stellar
+示例：https://github-api-bice.vercel.app/v1/releases?source=xaoxuu/github-api&target=xaoxuu/hexo-theme-stellar
 
 ### issues
 
 ```
-https://gh-api.xaoxuu.com/v1/issues?source={owner/repo}&target={owner/repo}
+https://github-api-bice.vercel.app/v1/issues?source={owner/repo}&target={owner/repo}
 ```
 
-示例：https://gh-api.xaoxuu.com/v1/issues?source=xaoxuu/github-api&target=xaoxuu/hexo-theme-stellar
+示例：https://github-api-bice.vercel.app/v1/issues?source=xaoxuu/github-api&target=xaoxuu/hexo-theme-stellar
 
 ## 自己部署 API 可以缩短链接
 
