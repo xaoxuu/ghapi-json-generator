@@ -1,33 +1,9 @@
-# 设置
-settings:
-  # 默认源，请求时不传 source 则使用这里的值作为 source ，如果需要部署API，则需要设置为「用户名/本仓库」
-  source_repo: xaoxuu/github-api
-
 ########################################
 # 由于 GitHub API 限制，最多可以设置 60 个
 ########################################
 
-# 要保存的 users 数据
-users:
-  - xaoxuu
-
-# 要保存 contributors 数据的仓库
-contributors:
-  - xaoxuu/hexo-theme-stellar
-  - volantis-x/hexo-theme-volantis
-
-# 要保存 releases 数据的仓库
-releases:
-  - xaoxuu/hexo-theme-stellar
-  - volantis-x/hexo-theme-volantis
-
-# 要保存 issues 数据的仓库
-issues:
-  - xaoxuu/hexo-theme-stellar
-  - volantis-x/hexo-theme-volantis
-
-# 要保存 stargazers 数据的仓库
-stargazers:
-  - xaoxuu/hexo-theme-stellar
-  - xaoxuu/ProHUD
-  - volantis-x/hexo-theme-volantis
+links:
+  # Stellar 最近更新
+  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/releases?per_page=1
+  # 近期动态
+  - https://api.github.com/repos/xaoxuu/blog-timeline/issues

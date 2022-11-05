@@ -24,7 +24,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run Generator
       run: |
-        python generator/v1.py
+        python generator/v2.py
     - name: Commit & Push
       uses: action-x/commit@v2.9
       with:
