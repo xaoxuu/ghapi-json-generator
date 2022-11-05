@@ -9,10 +9,9 @@ print('> rate_limit: \n', requests.get('https://api.github.com/rate_limit').cont
 print('> start')
 
 def save_json(path, content):
-    root = 'v2/'
+    root = 'v2'
     dir = root + path + '/'
     file = dir + 'data.json'
-    print('> file path:', file)
     # 创建路径
     isExists = os.path.exists(dir)
     if not isExists:
@@ -26,12 +25,14 @@ try:
     for link in config.read('links'):
         print('> get: ', link)
         url = urlparse(link)
-        print('> path: ', url.path)
         req = requests.get(link)
-        save_json(url.path, json.loads(req.content.decode()))
+        path = url.path
+        if url.query:
+            path = path + '?' + url.query
+        save_json(path, json.loads(req.content.decode()))
 
 except Exception as e:
     print('> exception: ', e)
 
-print('> rate_limit: \n', requests.get('https://api.github.com/rate_limit').content.decode())
+print('\n> rate_limit: \n', requests.get('https://api.github.com/rate_limit').content.decode())
 print('> end')

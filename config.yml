@@ -3,7 +3,22 @@
 ########################################
 
 links:
-  # Stellar 最近更新
-  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/releases?per_page=1
-  # 近期动态
-  - https://api.github.com/repos/xaoxuu/blog-timeline/issues
+  # Stellar 最近更新日志（10条记录）
+  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/releases?per_page=10
+  # Stellar 开发者
+  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/contributors?per_page=100&direction=asc
+  # Stellar 点赞的用户
+  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/stargazers?per_page=100&page=1
+  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/stargazers?per_page=100&page=2
+  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/stargazers?per_page=100&page=3
+  # Stellar Todo
+  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/issues?labels=todo
+  
+  # Stellar 探索号
+  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/issues?state=all&labels=分享
+  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/issues?state=all&labels=分享&per_page=10
+  
+  # 我的博客热门文章
+  - https://api.github.com/repos/xaoxuu/blog-comments/issues?sort=comments
+  # 我近期动态（10条记录）
+  - https://api.github.com/repos/xaoxuu/blog-timeline/issues?per_page=20
