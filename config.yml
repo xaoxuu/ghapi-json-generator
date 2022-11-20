@@ -30,7 +30,7 @@ links:
   # - https://api.github.com/users/xaoxuu/followers
   # - https://api.github.com/users/xaoxuu/following
   # 我的仓库列表
-  - https://api.github.com/users/xaoxuu/repos
+  - https://api.github.com/users/xaoxuu/repos?per_page=100
   # 我的博客热门文章
   - https://api.github.com/repos/xaoxuu/blog-comments/issues?sort=comments
   # 我近期动态（20条记录）
