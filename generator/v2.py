@@ -5,7 +5,11 @@ import json
 import os
 from urllib.parse import urlparse
 
-print('> rate_limit: \n', requests.get('https://api.github.com/rate_limit').content.decode())
+
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+headers = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
+
+print('> rate_limit: \n', requests.get('https://api.github.com/rate_limit', headers=headers).content.decode())
 print('> start')
 
 def save_json(path, content):
@@ -25,7 +29,7 @@ try:
     for link in config.read('links'):
         print('> get: ', link)
         url = urlparse(link)
-        req = requests.get(link)
+        req = requests.get(link, headers=headers)
         path = url.path
         if url.query:
             path = path + '?' + url.query
@@ -34,5 +38,5 @@ try:
 except Exception as e:
     print('> exception: ', e)
 
-print('\n> rate_limit: \n', requests.get('https://api.github.com/rate_limit').content.decode())
+print('\n> rate_limit: \n', requests.get('https://api.github.com/rate_limit', headers=headers).content.decode())
 print('> end')

@@ -23,6 +23,8 @@ jobs:
       run: |
         pip install -r requirements.txt
     - name: Run Generator
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
       run: |
         python generator/v2.py
     - name: Commit & Push
