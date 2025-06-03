@@ -9,12 +9,11 @@ links:
   # Stellar 开发者
   - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/contributors?per_page=100&direction=asc
   # Stellar 点赞的用户
-  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/stargazers?per_page=100&page=1
-  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/stargazers?per_page=100&page=2
-  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/stargazers?per_page=100&page=3
+  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/stargazers?per_page=100&page=1&direction=desc
   # Stellar Todo
   - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/issues?labels=todo
   # Stellar 探索号
+  - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/issues?state=all&labels=分享?per_page=5
   - https://api.github.com/repos/xaoxuu/hexo-theme-stellar/issues?state=all&labels=分享
   
   ######## Volantis ########
@@ -34,5 +33,6 @@ links:
   - https://api.github.com/users/xaoxuu/repos?per_page=100
   # 我的博客热门文章
   - https://api.github.com/repos/xaoxuu/blog-comments/issues?sort=comments
-  # 我近期动态（20条记录）
+  # 我近期动态
+  - https://api.github.com/repos/xaoxuu/blog-timeline/issues?per_page=5
   - https://api.github.com/repos/xaoxuu/blog-timeline/issues?per_page=20
